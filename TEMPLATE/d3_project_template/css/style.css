@@ -6,3 +6,29 @@ body {
 
 h1 {
 }
+
+
+#map-area {
+	width: 800px;
+	height: 800px;
+	margin: 0;
+	padding: 0;
+}
+
+.stations, .stations svg {
+	position: absolute;
+}
+
+.stations svg {
+	width: 60px;
+	height: 20px;
+	padding-right: 100px;
+	font: 10px sans-serif;
+}
+
+.marker circle {
+	fill: brown;
+	stroke: black;
+	stroke-width: 1.5px;
+	z-index: 100;
+}
