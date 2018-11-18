@@ -14,6 +14,10 @@ h1 {
 	color: #343434;
 }
 
+h2 {
+text-align: left;
+}
+
 
 #map-area {
 	width: 800px;
@@ -34,7 +38,7 @@ h1 {
 }
 
 .marker circle {
-	fill: brown;
+	fill: yellow;
 	stroke: black;
 	stroke-width: 1.5px;
 	z-index: 100;
