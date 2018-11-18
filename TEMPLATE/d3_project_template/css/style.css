@@ -1,10 +1,17 @@
-/* custom css rules */
 
 body {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
+	background-color: #FFFED7;
+	text-align: center;
+	color: #343434;
+	margin-left: 50px; align-content: center;
+	margin-right: 50px;
 }
 
 h1 {
+	font-weight: 100;
+	margin-top: 50px;
+	color: #343434;
 }
 
 
@@ -31,4 +38,14 @@ h1 {
 	stroke: black;
 	stroke-width: 1.5px;
 	z-index: 100;
+
+p {
+	font-size: 14px;
+	text-align: center;
+}
+
+img {
+	height: 200px;
+	overflow: hidden;
+	align-content: center;
 }
