@@ -6,6 +6,8 @@
 
     <title>D3 Project</title>
     <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/leaflet.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -26,12 +28,13 @@
             celebratory event! The data below can be filtered based on price range and average rating on Yelp.
         </p>
     </div>
+    <div class="row">
+        <div id="test-map"> </div>
+    </div>
     <div class="row" id="maps">
         <div class="col">
             <h2>Food Map of Las Vegas</h2>
-            <div id="map-area">
-            </div>
-        </div>
+            <div id="map-area"> </div>
         <div class="col"> Treemap </div>
     </div>
 
@@ -39,18 +42,21 @@
         Specific Restaurant information here
     </div>
 
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 
     <!--Load relevant libraries-->
+    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="//maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/leaflet.js"></script>
 
     <script src="//d3js.org/d3.v3.min.js"></script>
 
     <!--Google maps API-->
 
     <!--Visualization objects-->
+    <script src="js/restaurantMap.js"></script>
     <script src="js/map.js"></script>
     <script src="js/main.js"></script>
 
