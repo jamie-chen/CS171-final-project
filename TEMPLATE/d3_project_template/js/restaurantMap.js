@@ -45,6 +45,8 @@ RestaurantMap.prototype.initVis = function() {
 RestaurantMap.prototype.wrangleData = function() {
     var vis = this;
 
+    vis.displayData = vis.data;
+
     vis.updateVis();
 };
 
@@ -54,7 +56,12 @@ RestaurantMap.prototype.wrangleData = function() {
 RestaurantMap.prototype.updateVis = function() {
     var vis = this;
 
-    restaurants = L.layerGroup().addTo(map);
+    if (vis.restaurants != null)
+    {
+        vis.restaurants.clearLayers();
+    }
+
+    vis.restaurants = L.layerGroup().addTo(map);
 
     var RestaurantIcon = L.Icon.extend({
         options: {
@@ -69,7 +76,7 @@ RestaurantMap.prototype.updateVis = function() {
 
     var regMarker = new RestaurantIcon({ iconUrl: 'images/markers-coral.png'});
 
-    vis.data.forEach(function(d) {
+    vis.displayData.forEach(function(d) {
         var popupContent = "<strong>" + d.name + "</strong> <br>";
         popupContent += d.address;
 
@@ -77,11 +84,11 @@ RestaurantMap.prototype.updateVis = function() {
 
         if (d.stars >= 4.0) {
             rest = L.marker([d.latitude, d.longitude], {icon: topMarker}).bindPopup(popupContent);
-            restaurants.addLayer(rest);
+            vis.restaurants.addLayer(rest);
         }
         else {
             rest = L.marker([d.latitude, d.longitude], {icon: regMarker}).bindPopup(popupContent);
-            restaurants.addLayer(rest);
+            vis.restaurants.addLayer(rest);
         }
 
     })
