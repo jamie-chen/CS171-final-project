@@ -33,6 +33,8 @@ RestaurantMap.prototype.initVis = function() {
         ext: 'png'
     }).addTo(map);
 
+    L.Icon.Default.imagePath = 'd3_project_template/images/';
+
     vis.wrangleData();
 };
 
@@ -54,13 +56,34 @@ RestaurantMap.prototype.updateVis = function() {
 
     restaurants = L.layerGroup().addTo(map);
 
+    var RestaurantIcon = L.Icon.extend({
+        options: {
+            shadowUrl: 'images/marker-shadow.png',
+            iconSize: [25,41],
+            iconAnchor: [12,41],
+            popupAnchor: [0,-28]
+        }
+    });
+
+    var topMarker = new RestaurantIcon({ iconUrl: 'images/marker-green.png'});
+
+    var regMarker = new RestaurantIcon({ iconUrl: 'images/markers-coral.png'});
+
     vis.data.forEach(function(d) {
         var popupContent = "<strong>" + d.name + "</strong> <br>";
         popupContent += d.address;
 
-        var rest = L.marker([d.latitude, d.longitude]).bindPopup(popupContent);
+        var rest;
 
-        restaurants.addLayer(rest);
+        if (d.stars >= 4.0) {
+            rest = L.marker([d.latitude, d.longitude], {icon: topMarker}).bindPopup(popupContent);
+            restaurants.addLayer(rest);
+        }
+        else {
+            rest = L.marker([d.latitude, d.longitude], {icon: regMarker}).bindPopup(popupContent);
+            restaurants.addLayer(rest);
+        }
+
     })
 
 };

@@ -6,6 +6,9 @@
 
     <title>D3 Project</title>
     <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/leaflet.css">
     <link rel="stylesheet" href="css/style.css">
@@ -16,28 +19,32 @@
     <h1> A Hungry Student's Guide to Las Vegas</h1>
 
     <div class="row view overlay zoom" >
+        <center>
             <img src="images/res1.jpg" class="img-fluid" style="height:200px"/>
             <img src="images/res4.jpg" class="img-fluid" style="height:200px"/>
             <img src="images/food1.jpg" class="img-fluid" style="height:200px; width:210px"/>
             <img src="images/res2.jpg" class="img-fluid" style="height:200px"/>
+        </center>
     </div>
 
     <div class="row">
         <p>
-            Explore this website to find a restaurant for any kind of event - a quick lunch, birthday meal, or
+            You're in Las Vegas for the weekend with your friends, and trying to decide your next meal. Explore this website to find a restaurant for any kind of event - a quick lunch, birthday meal, or
             celebratory event! The data below can be filtered based on price range and average rating on Yelp.
         </p>
     </div>
-    <div class="row">
+    <div class="row" id="maps">
+            <h2>Food Map of Las Vegas</h2>
+        <p>
+            The green icons indicate restaurants with a rating of 4.0 stars or more. Click on the individual icons
+            to see the name of the restaurant and its address.
+        </p>
+            <div id="test-map"> </div>
+            <div id="map-area"> </div>
+    </div>
+    <div class="row" id="treemaps">
         <div id="test-map"> </div>
     </div>
-    <div class="row" id="maps">
-        <div class="col">
-            <h2>Food Map of Las Vegas</h2>
-            <div id="map-area"> </div>
-        <div class="col"> Treemap </div>
-    </div>
-
     <div class="row" id="restaurantInfo">
         Specific Restaurant information here
     </div>
@@ -51,7 +58,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/leaflet.js"></script>
 
-    <script src="//d3js.org/d3.v3.min.js"></script>
+        <script src="js/leaflet.awesome-markers.js"></script>
+        <script src="//d3js.org/d3.v3.min.js"></script>
 
     <!--Google maps API-->
 
