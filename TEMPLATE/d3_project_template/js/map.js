@@ -16,6 +16,11 @@ InteractiveMap = function(_parentElement, _data){
 InteractiveMap.prototype.initVis = function() {
     var vis = this;
 
+    vis.svg = d3.select("#restaurantInfo.row").append("svg")
+        .attr("width", 600)
+        .attr("height", 300);
+
+
     // Create the Google Map…
     var map = new google.maps.Map(d3.select("#map-area").node(), {
         zoom: 11,
@@ -29,7 +34,7 @@ InteractiveMap.prototype.initVis = function() {
     d3.json("data/LV_data.json", function(error, data) {
         if (error) throw error;
         data = data.slice(0, 100);
-        console.log(data);
+        // console.log(data);
         var overlay = new google.maps.OverlayView();
 
         // Add the container when the overlay is added to the map.
@@ -54,7 +59,14 @@ InteractiveMap.prototype.initVis = function() {
                 marker.append("circle")
                     .attr("r", 4.5)
                     .attr("cx", padding)
-                    .attr("cy", padding);
+                    .attr("cy", padding)
+                    .on("click", function(d) {
+                        vis.svg.append("text")
+                            .attr("x", padding)
+                            .attr("y", padding)
+                            .attr("dy", ".31em")
+                            .text(d.value.name);
+                    });
 
                 // Add a label.
                 marker.append("text")
@@ -66,7 +78,7 @@ InteractiveMap.prototype.initVis = function() {
                 function transform(d) {
                     d = d.value;
                     d = new google.maps.LatLng(d.latitude, d.longitude);
-                    console.log(d.x);
+                    // console.log(d.x);
                     d = projection.fromLatLngToDivPixel(d);
                     return d3.select(this)
                         .style("left", (d.x - padding) + "px")
