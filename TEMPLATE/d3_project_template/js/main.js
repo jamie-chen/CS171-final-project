@@ -16,22 +16,56 @@ d3.json("data/LV_data.json", function(error, restaurantData) {
     d3.select("#ratingFilter").on("click", function() {
        updateVisualization();
     });
+
+    d3.select("#priceFilter").on("click", function() {
+        updateVisualization();
+    })
 });
 
 function updateVisualization() {
     var low = +document.getElementById('low').value;
     var high = +document.getElementById('high').value;
 
-    var framedData = data.filter(function(d) {
+    var lowPrice = determinePrice('lowPrice');
+    console.log(lowPrice);
+    var highPrice = determinePrice('highPrice');
+    console.log(highPrice);
+
+    var filteredData = data.filter(function(d) {
         return (d.stars >= low && d.stars <=high);
     });
 
-    console.log(framedData);
+    var attributesExist = filteredData.filter(function(d) {
+        return (d.attributes != null && d.attributes.RestaurantsPriceRange2 != null);
+    });
 
-    testMap.displayData = framedData;
+    var display = attributesExist.filter(function(d) {
+        return (+d.attributes.RestaurantsPriceRange2 >= lowPrice && +d.attributes.RestaurantsPriceRange2 <= highPrice);
+    });
+
+    console.log(display);
+
+    testMap.displayData = display;
     testMap.updateVis();
     console.log(testMap.displayData);
 
+}
+
+function determinePrice(element) {
+    var symbol = document.getElementById(element).value;
+
+    if (symbol === '$') {
+        return 1;
+    }
+    else if (symbol === '$$') {
+        return 2;
+    }
+    else if (symbol === '$$$') {
+        return 3;
+    }
+    else {
+        return 4;
+    }
 }
 
 
