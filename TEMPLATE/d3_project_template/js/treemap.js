@@ -53,6 +53,7 @@ TreeMap.prototype.initVis = function() {
         color = d3.scale.category20c(),
         root,
         node;
+    d3.select("svg").remove();
 
     vis.treemap = d3.layout.treemap()
         .round(true)
@@ -120,3 +121,13 @@ TreeMap.prototype.countCategory = function(category) {
 
     return counter;
 };
+
+TreeMap.prototype.updateVis = function(newData) {
+    var vis = this;
+
+    // d3.selectAll("g").remove();
+
+    vis.data = newData;
+    vis.initVis();
+
+}

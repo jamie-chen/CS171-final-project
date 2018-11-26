@@ -25,7 +25,7 @@ d3.json("data/LV_data.json", function(error, restaurantData) {
     });
     console.log("Num restaurants:");
     console.log(restaurantData.length);
-    restaurantData = restaurantData.slice(0, 5000);
+    restaurantData = restaurantData.slice(0, 500);
     restaurantData = restaurantData.filter(function(d) {
         console.log(d);
         return d.hasOwnProperty("categories");
@@ -68,7 +68,7 @@ function updateVisualization() {
     });
 
     console.log(display);
-
+    treeMap.updateVis(display);
     testMap.displayData = display;
     testMap.updateVis();
     console.log(testMap.displayData);

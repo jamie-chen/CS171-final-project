@@ -61,7 +61,7 @@ RestaurantMap.prototype.updateVis = function() {
         vis.restaurants.clearLayers();
     }
 
-    vis.restaurants = L.layerGroup().addTo(map);
+    vis.restaurants = L.featureGroup().addTo(map);
 
     var RestaurantIcon = L.Icon.extend({
         options: {
@@ -91,6 +91,54 @@ RestaurantMap.prototype.updateVis = function() {
             vis.restaurants.addLayer(rest);
         }
 
-    })
+        // prep for clicking
+        rest.name = d.name;
+        rest.address = d.address;
+        rest.state = d.state;
+        rest.neighborhood = d.neighborhood;
+        rest.business_id = d.business_id;
+        rest.categories = d.categories;
+        rest.city = d.city;
+        rest.hours = d.hours;
+        rest.stars = d.stars;
+        rest.attributes = d.attributes;
+        rest.review_count = d.review_count;
+
+
+    });
+
+    // click listener
+    vis.restaurants.on("click", function(event) {
+
+        var clickedMarker = event.layer;
+
+        d3.select("div.restaurant-title").selectAll("*").remove();
+
+
+        var title = d3.select("div.restaurant-title").append("h1")
+            .text(clickedMarker.name)
+            .attr("class", "restaurant-title");
+
+        var categories = ["Rating: ", "Number of Reviews: ", "Neighborhood: ", "Address: ", "Categories: "];
+        var data = [clickedMarker.stars, clickedMarker.review_count, clickedMarker.neighborhood, clickedMarker.address + ", " + clickedMarker.city + " " + clickedMarker.state,
+            clickedMarker.categories];
+
+        var final_data = [];
+        categories.forEach(function(d, index) {
+            final_data[index] = d + data[index];
+        });
+
+        console.log(final_data);
+
+        d3.select("div.restaurant-info").selectAll("p").remove();
+
+        d3.select("div.restaurant-info").append("p")
+            .data(final_data)
+            .enter()
+            .append("p")
+            .text(function(d) {return d})
+            .attr("class", "restaurant-info");
+
+    });
 
 };
