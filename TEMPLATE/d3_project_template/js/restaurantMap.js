@@ -109,18 +109,47 @@ RestaurantMap.prototype.updateVis = function() {
 
     // click listener
     vis.restaurants.on("click", function(event) {
-
         var clickedMarker = event.layer;
 
         d3.select("div.restaurant-title").selectAll("*").remove();
+        d3.select("div.star-rating").selectAll("*").remove();
+
+        function checkstars(n) {
+            console.log(n);
+            var result = '';
+            for (var i = 1; i <= n; i++) {
+                result += "<span class='fas fa-star'></span>";
+            }
+            if (!(Number.isInteger(n))) {
+                result += "<span class='fas fa-star-half'></span>";
+            }
+            return result;
+        }
+
+        var stars = checkstars(clickedMarker.stars);
 
 
         var title = d3.select("div.restaurant-title").append("h1")
             .text(clickedMarker.name)
             .attr("class", "restaurant-title");
 
-        var categories = ["Rating: ", "Number of Reviews: ", "Neighborhood: ", "Address: ", "Categories: "];
-        var data = [clickedMarker.stars, clickedMarker.review_count, clickedMarker.neighborhood, clickedMarker.address + ", " + clickedMarker.city + " " + clickedMarker.state,
+        var starlabel = d3.select("div.star-rating").append("g")
+            .html(stars)
+            .attr("class", "star-rating");
+
+
+        function checkprice(n) {
+            var result = '';
+            for (var i = 0; i < n; i ++) {
+                result += "$";
+            }
+            return result;
+        }
+
+        var price = checkprice(clickedMarker.attributes.RestaurantsPriceRange2);
+
+        var categories = ["Rating: ", "Price", "Number of Reviews: ", "Neighborhood: ", "Address: ", "Categories: "];
+        var data = [clickedMarker.stars + "/5", price, clickedMarker.review_count, clickedMarker.neighborhood, clickedMarker.address + ", " + clickedMarker.city + " " + clickedMarker.state,
             clickedMarker.categories];
 
         var final_data = [];
@@ -128,16 +157,30 @@ RestaurantMap.prototype.updateVis = function() {
             final_data[index] = d + data[index];
         });
 
-        console.log(final_data);
 
-        d3.select("div.restaurant-info").selectAll("p").remove();
+        // d3.select("div.restaurant-info").selectAll("*").remove();
+        //
+        // d3.select("div.restaurant-info").selectAll("p")
+        //     .data(final_data)
+        //     .enter()
+        //     .append("p")
+        //     .attr("x", 20)
+        //     .attr("class", "restaurant-info")
+        //     .text(function(d) {return d});
 
-        d3.select("div.restaurant-info").append("p")
-            .data(final_data)
+        d3.select("div.col.restaurant-cat").selectAll("*").remove();
+        d3.select("div.col.restaurant-cat").selectAll("p")
+            .data(categories)
             .enter()
             .append("p")
-            .text(function(d) {return d})
-            .attr("class", "restaurant-info");
+            .text(function(d) {return d});
+
+        d3.select("div.col.restaurant-data").selectAll("*").remove();
+        d3.select("div.col.restaurant-data").selectAll("p")
+            .data(data)
+            .enter()
+            .append("p")
+            .text(function(d) {return d});
 
     });
 

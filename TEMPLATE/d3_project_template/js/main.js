@@ -1,6 +1,5 @@
 /* main JS file */
 
-console.log("Hello JS world!");
 
 var data = [];
 var testMap;
@@ -23,8 +22,8 @@ d3.json("data/LV_data.json", function(error, restaurantData) {
         var temp_categories = d.categories;
         return temp_categories.includes("Restaurants");
     });
-    console.log("Num restaurants:");
-    console.log(restaurantData.length);
+    // console.log("Num restaurants:");
+    // console.log(restaurantData.length);
     restaurantData = restaurantData.slice(0, 500);
     restaurantData = restaurantData.filter(function(d) {
         console.log(d);
@@ -51,9 +50,9 @@ function updateVisualization() {
     var high = +document.getElementById('high').value;
 
     var lowPrice = determinePrice('lowPrice');
-    console.log(lowPrice);
+    // console.log(lowPrice);
     var highPrice = determinePrice('highPrice');
-    console.log(highPrice);
+    // console.log(highPrice);
 
     var filteredData = data.filter(function(d) {
         return (d.stars >= low && d.stars <=high);
@@ -67,11 +66,11 @@ function updateVisualization() {
         return (+d.attributes.RestaurantsPriceRange2 >= lowPrice && +d.attributes.RestaurantsPriceRange2 <= highPrice);
     });
 
-    console.log(display);
+    // console.log(display);
     treeMap.updateVis(display);
     testMap.displayData = display;
     testMap.updateVis();
-    console.log(testMap.displayData);
+    // console.log(testMap.displayData);
 
 }
 
