@@ -1,4 +1,14 @@
-var restaurant_categories = ["Fast Food", "American (Traditional)", "Italian", "Breakfast & Brunch", "Mexican", "Chinese", "Ice Cream & Frozen Yogurt", "Japanese", "American (New)", "Diners"]
+var restaurant_categories = ["Fast Food",
+    "American (Traditional)",
+    "Italian",
+    "Breakfast & Brunch",
+    "Mexican",
+    "Chinese",
+    "Japanese",
+    "American (New)",
+    "Diners",
+    "Burgers",
+    "French"];
 
 /*
  * TreeMap - Object constructor function
@@ -87,7 +97,7 @@ TreeMap.prototype.initVis = function() {
         .attr("y", function(d) { return d.dy / 2; })
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
-        .text(function(d) { return d.name; })
+        .text(function(d) { return d.name + ": " + d.count; })
         .style("opacity", function(d) { d.w = this.getComputedTextLength(); return d.dx > d.w ? 1 : 0; });
 }
 
@@ -99,6 +109,9 @@ TreeMap.prototype.countCategory = function(category) {
     var counter = 0;
 
     vis.data.forEach(function(d) {
+        if (!d.categories) {
+            return;
+        }
         var temp_categories = d.categories;
         if (temp_categories.includes(category)) {
             counter += 1;

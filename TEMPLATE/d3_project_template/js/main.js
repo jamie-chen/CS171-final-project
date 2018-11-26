@@ -7,7 +7,29 @@ var testMap;
 
 d3.json("data/LV_data.json", function(error, restaurantData) {
     if (error) throw error;
-    restaurantData = restaurantData.slice(0, 500);
+
+    // Remove data in which categories list is empty
+    // restaurantData = restaurantData.filter(function(d) {
+    //     console.log(d);
+    //     return !d.categories;
+    // });
+
+    restaurantData = restaurantData.filter(function(d) {
+        // console.log(d.categories);
+        // console.log(d);
+        if (!d.categories) {
+            return false;
+        }
+        var temp_categories = d.categories;
+        return temp_categories.includes("Restaurants");
+    });
+    console.log("Num restaurants:");
+    console.log(restaurantData.length);
+    restaurantData = restaurantData.slice(0, 5000);
+    restaurantData = restaurantData.filter(function(d) {
+        console.log(d);
+        return d.hasOwnProperty("categories");
+    })
 
     data = restaurantData;
 
