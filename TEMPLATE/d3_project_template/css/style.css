@@ -58,3 +58,21 @@ img {
 	overflow: hidden;
 	align-content: center;
 }
+
+rect {
+	fill: none;
+}
+
+.chart {
+	display: block;
+	margin: auto;
+	margin-top: 40px;
+}
+
+text {
+	font-size: 11px;
+}
+
+#tree-map-div {
+	width: 100%;
+}

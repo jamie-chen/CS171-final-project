@@ -12,6 +12,8 @@ d3.json("data/LV_data.json", function(error, restaurantData) {
     data = restaurantData;
 
     testMap = new RestaurantMap("test-map", data, [36.1699, -115.13398]);
+    treeMap = new TreeMap("#tree-map-div", data);
+
 
     d3.select("#ratingFilter").on("click", function() {
        updateVisualization();
