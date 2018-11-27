@@ -7,8 +7,7 @@ var restaurant_categories = ["Fast Food",
     "Japanese",
     "American (New)",
     "Diners",
-    "Burgers",
-    "French"];
+    "Burgers"];
 
 /*
  * TreeMap - Object constructor function
@@ -33,7 +32,7 @@ TreeMap = function(_parentElement, _data){
  */
 TreeMap.prototype.initVis = function() {
     var vis = this;
-
+    vis.treeMapData = [];
     // Initialize dataset, count of each restaurant category
     restaurant_categories.forEach(function(d) {
         vis.treeMapData.push({
@@ -64,20 +63,22 @@ TreeMap.prototype.initVis = function() {
     // Create SVG to append values to
     vis.svg = d3.select(vis.parentElement).append("div")
         .attr("class", "chart")
+        .attr("id", "treemap-container")
         .style("width", width + "px")
         .style("height", height + "px")
         .append("svg:svg")
         .attr("width", width)
         .attr("height", height)
         .append("svg:g")
+        .attr("id", "treemap-svg")
         .attr("transform", "translate(.5,.5)");
 
     var nodes = vis.treemap.nodes(vis.treeMapData)
         .filter(function(d) { return !d.children});
-
+    console.log("nodes are");
     console.log(nodes);
 
-    var cell = vis.svg.selectAll("g")
+    vis.cell = vis.svg.selectAll("g")
         .data(nodes)
         .enter().append("svg:g")
         .attr("class", "cell")
@@ -85,21 +86,25 @@ TreeMap.prototype.initVis = function() {
             console.log(d);
             return "translate(" + d.x + "," + d.y + ")"; });
 
-    cell.append("svg:rect")
+    vis.cell.append("svg:rect")
         .attr("width", function(d) {
             console.log("hello");
             console.log(d);
             return d.dx - 1; })
         .attr("height", function(d) { return d.dy - 1; })
+        .transition()
         .style("fill", function(d) {return color(d.name); });
 
-    cell.append("svg:text")
+    vis.cell.append("svg:text")
         .attr("x", function(d) { return d.dx / 2; })
         .attr("y", function(d) { return d.dy / 2; })
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
         .text(function(d) { return d.name + ": " + d.count; })
         .style("opacity", function(d) { d.w = this.getComputedTextLength(); return d.dx > d.w ? 1 : 0; });
+
+    console.log("Should remove");
+
 }
 
 /*
@@ -126,8 +131,15 @@ TreeMap.prototype.updateVis = function(newData) {
     var vis = this;
 
     // d3.selectAll("g").remove();
-
+    d3.select("#treemap-container").remove();
+    console.log("Should remove");
     vis.data = newData;
+    vis.svg.select("#treemap-svg").selectAll("g").remove();
+    // vis.cell.remove();
     vis.initVis();
-
+    //
+    // var nodes = vis.treemap.nodes(vis.treeMapData)
+    //     .filter(function(d) { return !d.children});
+    //
+    // vis.svg.selectAll("g").remove();
 }
