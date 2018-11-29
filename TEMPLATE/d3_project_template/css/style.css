@@ -1,10 +1,11 @@
 
 body {
 	font-family: 'Avenir Next', sans-serif;
-	background-color: #FFFED7;
+	background-color: #000000;
 	text-align: center;
-	color: #343434;
-	margin-left: 50px; align-content: center;
+    color: white;
+	margin-left: 50px;
+    align-content: center;
 	margin-right: 50px;
 }
 
@@ -25,7 +26,7 @@ text-align: left;
 }
 
 #space-holder {
-	margin-top: 25%;
+	margin-top: 19%;
 }
 
 a:hover {
@@ -37,6 +38,11 @@ a:hover {
 
 
 }
+
+.treemap-text {
+	z-index: 10000000000;
+}
+
 /*Video*/
 #myVideo {
 	position: absolute;
@@ -53,13 +59,13 @@ a:hover {
 }
 
 #homepage-button {
-	width: 150px;
+	width: 170px;
 	color: white;
 	opacity: 1.0;
-	height: 50px;
+	height: 60px;
 	background-color: rgb(211, 70, 58);
 	text-align: center;
-	margin-top: 10%;
+	margin-top: 13%;
 }
 
 #main-page {
@@ -73,16 +79,10 @@ a:hover {
 	width: 100%;
 }
 
-#map-area {
-	width: 800px;
-	height: 800px;
-	margin: 0;
-	padding: 0;
-}
 
 #test-map {
 	width: 100%;
-	height: 500px;
+	height: 700px;
 }
 
 #inputs {
@@ -102,6 +102,27 @@ a:hover {
 	margin-left: 50px;
 }
 
+/* detailed description*/
+.filler-image svg {
+    align-content: center;
+}
+
+.restaurant-title h1 {
+    text-align: center;
+    align-content: center;
+    color: white;
+}
+
+.restaurant-cat p {
+    text-align: left;
+    font-weight: bold;
+}
+
+.restaurant-data p {
+    text-align: left;
+}
+/*/
+
 .stations, .stations svg {
 	position: absolute;
 }
@@ -114,36 +135,77 @@ a:hover {
 }
 
 .marker circle {
-	fill: yellow;
-	stroke: black;
-	stroke-width: 1.5px;
-	z-index: 100;
+    fill: yellow;
+    stroke: black;
+    stroke-width: 1.5px;
+    z-index: 100;
+}
 
 p {
 	font-size: 14px;
 	text-align: center;
 }
 
-img {
-	height: 200px;
-	overflow: hidden;
-	align-content: center;
+.icon-text {
+    font-size: 25px;
 }
 
-rect {
-	fill: none;
+.icon-col {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding: 0 20px;
 }
 
-.chart {
-	display: block;
-	margin: auto;
-	margin-top: 40px;
+#lowPrice, #highPrice {
+    width: 100px;
+
 }
 
-text {
-	font-size: 11px;
+#ratingFilter {
+    margin-right: 20px;
 }
 
-#tree-map-div {
-	width: 100%;
+#summary {
+    position: static;
+    padding: 50px 0 50px;
+    background-color: #2e3133;
+    /*width: 100vw;*/
+    margin-left: -50px !important;
+    margin-right: -50px;
+    margin-bottom: 10px;
+    color: white;
+    /*margin-bottom: 10px;*/
+    /*padding: 0 0 0 0;*/
+}
+
+#treemap-details {
+	padding-top: 15px;
+}
+
+#text1 {
+    font-size: 17px;
+}
+
+#text2 {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+#button-div {
+    text-align: end;
+}
+
+#category-reset {
+    background-color: rgb(211, 70, 58);
+    color: white;
+}
+
+#generatorRestaurant {
+    margin-left: 50px;
+    align-content: center;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

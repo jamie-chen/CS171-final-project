@@ -16,10 +16,10 @@
 </head>
 <body>
 
-    <!--<h1> A Hungry Student's Guide to Las Vegas</h1>-->
+<!--<h1> A Hungry Student's Guide to Las Vegas</h1>-->
 
-    <!--Live video wallpaper-->
-    <div id="video-container">
+<!--Live video wallpaper-->
+<div id="video-container">
     <header class="bg-primary text-white" id="main-page">
         <video autoplay muted loop id="myVideo">
             <source src="images/vegasstrip2clip.mp4" type="video/mp4">
@@ -32,108 +32,230 @@
                 <a class="nav-link js-scroll-trigger" href="#leaflet-div">Learn More</a></button>
         </div>
     </header>
-    </div>
+</div>
 
-    <div id="space-holder"></div>
+<div id="space-holder"></div>
 
-    <div class="row view overlay zoom" >
-        <center>
-            <img src="images/res1.jpg" class="img-fluid" style="height:200px"/>
-            <img src="images/res4.jpg" class="img-fluid" style="height:200px"/>
-            <img src="images/food1.jpg" class="img-fluid" style="height:200px; width:210px"/>
-            <img src="images/res2.jpg" class="img-fluid" style="height:200px"/>
-        </center>
-    </div>
-
-    <div class="row">
-        <p>
-            You're in Las Vegas for the weekend with your friends, and trying to decide your next meal. Explore this website to find a restaurant for any kind of event - a quick lunch, birthday meal, or
-            celebratory event! The data below can be filtered based on price range and average rating on Yelp.
-        </p>
-    </div>
-
-
-    <div class="row" id="maps">
-
-
-
-        <div class="col-7" id="leaflet-div">
-            <div class="row" id="inputs">
-                <h2>Food Map of Las Vegas</h2>
-                <p>
-                    The green icons indicate restaurants with a rating of 4.0 stars or more. Click on the individual icons
-                    to see the name of the restaurant and its address.
-                </p>
-                <div class="input-group" id="ratingframe">
-                    <input type="text" class="form-control" id="low" value="0.0"/>
-                    <input type="text" class="form-control" id="high" value="5.0"/>
-                    <button type="button" class="btn btn-danger" id="ratingFilter"> Filter based on stars </button>
-                    <br>
-                    <input type="text" class="form-control" id="lowPrice" value="$"/>
-                    <input type="text" class="form-control" id="highPrice" value="$$$$"/>
-                    <button type="button" class="btn btn-danger" id="priceFilter"> Filter based on price </button>
-                </div>
-
+<div id="summary">
+    <div class="app-container" id="icons-row">
+        <div class="row" id="row1">
+            <div class="col-3 icon-col">
+                <i class="fas fa-dollar-sign" style="font-size:75px;color:white"></i> <br>
+                <p class="icon-text"> On a Budget?</p> Look for the best and  <b> <i>cheapest</i> </b> food options near you!
             </div>
-            <div id="test-map"></div>
 
-        </div>
+            <div class="col-3 icon-col">
+                <i class="fas fa-clock" style="font-size:75px;color:white"></i> <br>
+                <p class="icon-text">Efficient</p> Find the food you want to eat as quickly as possible.
+            </div>
 
-        <div class="col" id="restaurant-info-div">
-            <div class="row" id="restaurantInfo">
-                <div class = "restaurant-title"></div>
+            <div class="col-3 icon-col">
+                <i class="fas fa-search-location" style="font-size:75px;color:white"></i> <br>
+                <p class="icon-text">Explore</p> Discover hot and new food options near you.
             </div>
-            <div class = "row" id = "stars">
-                <div class = "star-rating"></div>
+
+            <div class="col-3 icon-col">
+                <i class="fas fa-balance-scale" style="font-size:75px;color:white"></i> <br>
+                <p class="icon-text"> Precise</p> Find exactly what you are looking for with intuitive and versatile search filters.
             </div>
-            <div class ="row" id = "restaurantInfo2">
-                <div class = "col restaurant-cat"></div>
-                <div class = "col restaurant-data"></div>
-                <!--<div class = "col image"></div>-->
-                <!--<div class = "col restaurant-info"></div>-->
-            </div>
+
         </div>
 
     </div>
 
-    <div class="row" id="treemaps">
-        <div id="tree-map-div"> </div>
+</div>
+
+
+<div class="row">
+    <p id="text1">
+        Las Vegas is a popular weekend getaway for many college students. Be that to celebrate a three-day weekend or a 21st birthday, people
+        have plenty of things to do in Las Vegas. If you're in Las Vegas for the weekend with your friends, and trying to decide your next meal,
+        this website offers quick and easy ways to discover an appropriate restaurant for you. Explore this website to find a restaurant for any kind of event - a quick lunch, birthday meal, or
+        celebratory event! The data below can be filtered based on price range and average rating on Yelp. You can either trust us to
+        find something for you, or explore our website to find one for yourself.
+    </p>
+</div>
+
+<div class="divide-space"></div>
+
+<div class="row" id="tryUs">
+    <div class="col">
+        <select class="custom-select custom-select-sml" id="restCategory" >
+            <option selected> Select the category of the restaurant </option>
+            <option value="Fast Food">Fast Food</option>
+            <option value="American">American</option>
+            <option value="Italian">Italian</option>
+            <option value="Breakfast & Brunch">Breakfast & Brunch</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Diners">Diners</option>
+            <option value="Burgers">Burgers</option>
+        </select>
     </div>
-    <!--<div class="row" id="restaurantInfo">-->
-        <!--<div class = "restaurant-title"></div>-->
-    <!--</div>-->
-    <!--<div class = "row" id = "stars">-->
-        <!--<div class = "star-rating"></div>-->
-    <!--</div>-->
-    <!--<div class ="row" id = "restaurantInfo2">-->
-        <!--<div class = "col restaurant-cat"></div>-->
-        <!--<div class = "col restaurant-data"></div>-->
-        <!--<div class = "col image"></div>-->
-        <!--&lt;!&ndash;<div class = "col restaurant-info"></div>&ndash;&gt;-->
-    <!--</div>-->
 
-    <!--Load relevant libraries-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/leaflet.js"></script>
+    <div class="col">
+        <select class="custom-select custom-select-sml" id="priceCategory">
+            <option selected> Select the price range of the restaurant </option>
+            <option value="1"> $ </option>
+            <option value="2"> $$ </option>
+            <option value="3"> $$$ </option>
+            <option value="4"> $$$$ </option>
+        </select>
+    </div>
 
-        <script src="js/leaflet.awesome-markers.js"></script>
-        <script src="//d3js.org/d3.v3.min.js"></script>
+    <div class="col">
+        <select class="custom-select custom-select-sml" id="minRating">
+            <option selected> Select the minimum rating of the restaurant </option>
+            <option value="1.0"> 1.0 </option>
+            <option value="2.0"> 2.0 </option>
+            <option value="3.0"> 3.0 </option>
+            <option value="4.0"> 4.0 </option>
+            <option value="5.0"> 5.0 </option>
+        </select>
+    </div>
 
-    <!--Custom color scales-->
-    <script src="js/d3-color.js"></script>
-    <script src="js/d3-interpolate.js"></script>
-    <script src="js/d3-scale-chromatic.js"></script>
-    <script src="js/smooth-scroll.js"></script>
+    <div class="col">
+        <button type="button" class="btn btn-danger" id="generatorRestaurant"> Find me a restaurant </button>
+    </div>
+
+</div>
+<h3 id="restaurant-rec"></h3>
 
 
-    <!--Visualization objects-->
-    <script src="js/restaurantMap.js"></script>
-    <script src="js/treemap.js"></script>
-    <!--<script src="js/map.js"></script>-->
-    <script src="js/main.js"></script>
+<div class="row" >
+    <p id="text2">
+        If our recommendation doesn't satisfy your needs or you want to keep on exploring, use our interactive
+        map below to find a restaurant.
+    </p>
+</div>
+
+
+<div class="row" id="maps">
+    <div class="col-7" id="leaflet-div">
+        <div class="row" id="inputs">
+            <h2>Food Map of Las Vegas</h2>
+            <p>
+                The green icons indicate restaurants with a rating of 4.0 stars or more. Click on the individual icons
+                to see the name of the restaurant and its address.
+            </p>
+            <div class="input-group" id="ratingframe">
+                <select class="custom-select custom-select-sml" id="low">
+                    <option selected value="1.0"> Min Stars</option>
+                    <option value="1.0"> 1.0 </option>
+                    <option value="2.0"> 2.0 </option>
+                    <option value="3.0"> 3.0 </option>
+                    <option value="4.0"> 4.0 </option>
+                    <option value="5.0"> 5.0 </option>
+                </select>
+                <select class="custom-select custom-select-sml" id="high">
+                    <option selected value="5.0"> Max Stars</option>
+                    <option value="1.0"> 1.0 </option>
+                    <option value="2.0"> 2.0 </option>
+                    <option value="3.0"> 3.0 </option>
+                    <option value="4.0"> 4.0 </option>
+                    <option value="5.0"> 5.0 </option>
+                </select>
+                <!--<input type="text" class="form-control" id="high" value="5.0"/>-->
+                <button type="button" class="btn btn-danger" id="ratingFilter"> Filter based on stars </button>
+                <br>
+
+                <select class="custom-select custom-select-sml" id="lowPrice">
+                    <option selected value="1"> Min $ </option>
+                    <option value="1"> $ </option>
+                    <option value="2"> $$ </option>
+                    <option value="3"> $$$ </option>
+                    <option value="4"> $$$$ </option>
+                </select>
+                <select class="custom-select custom-select-sml" id="highPrice">
+                    <option selected value="4.0"> Max $ </option>
+                    <option value="1"> $ </option>
+                    <option value="2"> $$ </option>
+                    <option value="3"> $$$ </option>
+                    <option value="4"> $$$$ </option>
+                </select>
+                <!--<input type="text" class="form-control" id="lowPrice" value="$"/>-->
+                <!--<input type="text" class="form-control" id="highPrice" value="$$$$"/>-->
+                <button type="button" class="btn btn-danger" id="priceFilter" onclick="updateVisualization()"> Filter based on price </button>
+            </div>
+
+        </div>
+        <div id="test-map"></div>
+
+    </div>
+
+    <div class="col" id="restaurant-info-div">
+        <!--</div>-->
+        <div class = "restaurant-title"></div>
+            <div class = "row" id = "price">
+                <div class = "col">
+                    <div class = "price-label"></div>
+                </div>
+                <div class = "col">
+                    <div class = "star-rating"></div>
+                </div>
+            </div>
+            <div class ="row" id = "restaurantInfo2">
+                <div class = "col restaurant-cat"></div>
+                <div class = "col restaurant-data"></div>
+            </div>
+            <div class = "row" id = "restaurant-images">
+                <div class = "filler-image"></div>
+            </div>
+    </div>
+    </div>
+
+
+</div>
+
+<div class="row" id="treemap-details">
+    <div class="col-6">
+        <h2 id="selected-cat">Selected Category: All Categories</h2>
+    </div>
+
+    <div class="col-6" id="button-div">
+        <button type="button" class="btn" id="category-reset" onclick= "resetTreeMap()"> Reset Category Selection</button>
+    </div>
+</div>
+
+
+<div class="row" id="treemaps">
+    <div id="tree-map-div"> </div>
+</div>
+<!--<div class="row" id="restaurantInfo">-->
+<!--<div class = "restaurant-title"></div>-->
+<!--</div>-->
+<!--<div class = "row" id = "stars">-->
+<!--<div class = "star-rating"></div>-->
+<!--</div>-->
+<!--<div class ="row" id = "restaurantInfo2">-->
+<!--<div class = "col restaurant-cat"></div>-->
+<!--<div class = "col restaurant-data"></div>-->
+<!--<div class = "col image"></div>-->
+<!--&lt;!&ndash;<div class = "col restaurant-info"></div>&ndash;&gt;-->
+<!--</div>-->
+
+<!--Load relevant libraries-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/leaflet.js"></script>
+
+<script src="js/leaflet.awesome-markers.js"></script>
+<script src="//d3js.org/d3.v3.min.js"></script>
+
+<!--Custom color scales-->
+<script src="js/d3-color.js"></script>
+<script src="js/d3-interpolate.js"></script>
+<script src="js/d3-scale-chromatic.js"></script>
+<script src="js/smooth-scroll.js"></script>
+
+
+<!--Visualization objects-->
+<script src="js/restaurantMap.js"></script>
+<script src="js/treemap.js"></script>
+<!--<script src="js/map.js"></script>-->
+<script src="js/main.js"></script>
 
 
 </body>

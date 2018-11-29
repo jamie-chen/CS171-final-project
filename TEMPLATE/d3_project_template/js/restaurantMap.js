@@ -25,15 +25,15 @@ RestaurantMap.prototype.initVis = function() {
     var vis = this;
 
     map = L.map(vis.parentElement, {
-        minZoom: 5,
-        maxZoom: 10
+        minZoom: 11,
+        maxZoom: 18
     }).setView([vis.mapPosition[0], vis.mapPosition[1]], 13);
 
     L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: 'abcd',
-        minZoom: 0,
-        maxZoom: 10,
+        minZoom: 11,
+        maxZoom: 18,
         ext: 'png'
     }).addTo(map);
 
@@ -109,8 +109,7 @@ RestaurantMap.prototype.updateVis = function() {
             tempMarker = marker1;
         }
 
-        // tempMarker.setOpacity(0.5);
-        rest = L.marker([d.latitude, d.longitude], {icon: tempMarker}).bindPopup(popupContent);
+        rest = L.marker([d.latitude, d.longitude], {icon: tempMarker, opacity: 0.7}).bindPopup(popupContent);
         vis.restaurants.addLayer(rest);
 
         // prep for clicking
@@ -135,6 +134,7 @@ RestaurantMap.prototype.updateVis = function() {
 
         d3.select("div.restaurant-title").selectAll("*").remove();
         d3.select("div.star-rating").selectAll("*").remove();
+        d3.select("div.price-label").selectAll("*").remove();
 
         function checkstars(n) {
             console.log(n);
@@ -159,6 +159,19 @@ RestaurantMap.prototype.updateVis = function() {
             .html(stars)
             .attr("class", "star-rating");
 
+        var checkdollars = function(n){
+            var result = '';
+            for (var i = 0; i < n; i ++ ) {
+                result += "<span class='fas fa-dollar-sign'></span>";
+            }
+            return result;
+        };
+
+        var dollars = checkdollars(clickedMarker.attributes.RestaurantsPriceRange2);
+        var pricelabel = d3.select("div.price-label").append("g")
+            .html(dollars)
+            .attr("class", "price-label");
+
 
         function checkprice(n) {
             var result = '';
@@ -173,6 +186,8 @@ RestaurantMap.prototype.updateVis = function() {
         var categories = ["Rating: ", "Price", "Number of Reviews: ", "Neighborhood: ", "Address: ", "Categories: "];
         var data = [clickedMarker.stars + "/5", price, clickedMarker.review_count, clickedMarker.neighborhood, clickedMarker.address + ", " + clickedMarker.city + " " + clickedMarker.state,
             clickedMarker.categories];
+        console.log("TESTING FOR NULL");
+        console.log(clickedMarker.neighborhood);
 
         var final_data = [];
         categories.forEach(function(d, index) {
@@ -180,21 +195,12 @@ RestaurantMap.prototype.updateVis = function() {
         });
 
 
-        // d3.select("div.restaurant-info").selectAll("*").remove();
-        //
-        // d3.select("div.restaurant-info").selectAll("p")
-        //     .data(final_data)
-        //     .enter()
-        //     .append("p")
-        //     .attr("x", 20)
-        //     .attr("class", "restaurant-info")
-        //     .text(function(d) {return d});
-
         d3.select("div.col.restaurant-cat").selectAll("*").remove();
         d3.select("div.col.restaurant-cat").selectAll("p")
             .data(categories)
             .enter()
             .append("p")
+            .attr("class", "restaurant-cat")
             .text(function(d) {return d});
 
         d3.select("div.col.restaurant-data").selectAll("*").remove();
@@ -202,8 +208,54 @@ RestaurantMap.prototype.updateVis = function() {
             .data(data)
             .enter()
             .append("p")
-            .text(function(d) {return d});
+            .text(function(d) {
+                if (d == '') {
+                    return "Information unavailable";
+                }
+                else return d});
+        //
+        // console.log(clickedMarker);
+
+        var restaurant_imgs = [ "fast_food.jpeg", "american_food.jpeg", "italian.jpeg", "breakfast.jpeg",
+            "mexican.jpeg", "chinese.jpeg", "japanese.jpeg", "american_new.jpeg", "diner.jpeg", "burgers.png"];
+        function find_image(lst) {
+            console.log(lst);
+            var result ='';
+            restaurant_categories.forEach(function(type, index) {
+                if (lst.includes(type)) {
+                    result = restaurant_imgs[index];
+                }
+            });
+            if (result =='') {
+                result = "restaurant.jpeg";
+            }
+            return result;
+        };
+
+        var imgsource = find_image(clickedMarker.categories);
+        if (imgsource != '') {
+            var path = ["images/" + imgsource];
+            console.log(path);
+        };
+
+        var img_width = $("#restaurant-images").width();
+
+        d3.select("div.filler-image").selectAll("*").remove();
+        var img_svg = d3.select("div.filler-image").append("svg")
+            .attr("width", img_width)
+            .attr("height", 250);
+
+        img_svg.selectAll("image")
+            .data(path)
+            .enter()
+            .append("image")
+            .attr("xlink:href", path)
+            .attr("x", "0")
+            .attr("y", "0")
+            .attr("width", img_width)
+            .attr("height", 300)
+            .attr("class", "filler-image");
+
 
     });
-
 };
