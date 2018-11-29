@@ -16,7 +16,25 @@
 </head>
 <body>
 
-    <h1> A Hungry Student's Guide to Las Vegas</h1>
+    <!--<h1> A Hungry Student's Guide to Las Vegas</h1>-->
+
+    <!--Live video wallpaper-->
+    <div id="video-container">
+    <header class="bg-primary text-white" id="main-page">
+        <video autoplay muted loop id="myVideo">
+            <source src="images/vegasstrip2clip.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="container text-center" id="page-top">
+            <h1 id="homepage-title">A Hungry Student's Guide to Las Vegas</h1>
+            <p class="lead">CS 171 <br> Jamie Chen, Jake Cui, and Annie Kim</p>
+            <button type="button" class="btn" id="homepage-button">
+                <a class="nav-link js-scroll-trigger" href="#leaflet-div">Learn More</a></button>
+        </div>
+    </header>
+    </div>
+
+    <div id="space-holder"></div>
 
     <div class="row view overlay zoom" >
         <center>
@@ -33,47 +51,70 @@
             celebratory event! The data below can be filtered based on price range and average rating on Yelp.
         </p>
     </div>
+
+
     <div class="row" id="maps">
-            <h2>Food Map of Las Vegas</h2>
-        <p>
-            The green icons indicate restaurants with a rating of 4.0 stars or more. Click on the individual icons
-            to see the name of the restaurant and its address.
-        </p>
-        <div class="input-group" id="ratingframe">
-            <input type="text" class="form-control" id="low" value="0.0"/>
-            <input type="text" class="form-control" id="high" value="5.0"/>
-            <button type="button" class="btn btn-danger" id="ratingFilter"> Filter based on stars </button>
-            <br>
-            <input type="text" class="form-control" id="lowPrice" value="$"/>
-            <input type="text" class="form-control" id="highPrice" value="$$$$"/>
-            <button type="button" class="btn btn-danger" id="priceFilter"> Filter based on price </button>
+
+
+
+        <div class="col-7" id="leaflet-div">
+            <div class="row" id="inputs">
+                <h2>Food Map of Las Vegas</h2>
+                <p>
+                    The green icons indicate restaurants with a rating of 4.0 stars or more. Click on the individual icons
+                    to see the name of the restaurant and its address.
+                </p>
+                <div class="input-group" id="ratingframe">
+                    <input type="text" class="form-control" id="low" value="0.0"/>
+                    <input type="text" class="form-control" id="high" value="5.0"/>
+                    <button type="button" class="btn btn-danger" id="ratingFilter"> Filter based on stars </button>
+                    <br>
+                    <input type="text" class="form-control" id="lowPrice" value="$"/>
+                    <input type="text" class="form-control" id="highPrice" value="$$$$"/>
+                    <button type="button" class="btn btn-danger" id="priceFilter"> Filter based on price </button>
+                </div>
+
+            </div>
+            <div id="test-map"></div>
+
         </div>
-            <div id="test-map"> </div>
-            <!--<div id="map-area"> </div>-->
+
+        <div class="col" id="restaurant-info-div">
+            <div class="row" id="restaurantInfo">
+                <div class = "restaurant-title"></div>
+            </div>
+            <div class = "row" id = "stars">
+                <div class = "star-rating"></div>
+            </div>
+            <div class ="row" id = "restaurantInfo2">
+                <div class = "col restaurant-cat"></div>
+                <div class = "col restaurant-data"></div>
+                <!--<div class = "col image"></div>-->
+                <!--<div class = "col restaurant-info"></div>-->
+            </div>
+        </div>
+
     </div>
+
     <div class="row" id="treemaps">
         <div id="tree-map-div"> </div>
     </div>
-    <div class="row" id="restaurantInfo">
-        <div class = "restaurant-title"></div>
-    </div>
-    <div class = "row" id = "stars">
-        <div class = "star-rating"></div>
-    </div>
-    <div class ="row" id = "restaurantInfo2">
-        <div class = "col restaurant-cat"></div>
-        <div class = "col restaurant-data"></div>
-        <div class = "col image"></div>
-        <!--<div class = "col restaurant-info"></div>-->
-    </div>
-
-
-
+    <!--<div class="row" id="restaurantInfo">-->
+        <!--<div class = "restaurant-title"></div>-->
+    <!--</div>-->
+    <!--<div class = "row" id = "stars">-->
+        <!--<div class = "star-rating"></div>-->
+    <!--</div>-->
+    <!--<div class ="row" id = "restaurantInfo2">-->
+        <!--<div class = "col restaurant-cat"></div>-->
+        <!--<div class = "col restaurant-data"></div>-->
+        <!--<div class = "col image"></div>-->
+        <!--&lt;!&ndash;<div class = "col restaurant-info"></div>&ndash;&gt;-->
+    <!--</div>-->
 
     <!--Load relevant libraries-->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="//maps.google.com/maps/api/js?sensor=true"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/leaflet.js"></script>
@@ -81,13 +122,19 @@
         <script src="js/leaflet.awesome-markers.js"></script>
         <script src="//d3js.org/d3.v3.min.js"></script>
 
-    <!--Google maps API-->
+    <!--Custom color scales-->
+    <script src="js/d3-color.js"></script>
+    <script src="js/d3-interpolate.js"></script>
+    <script src="js/d3-scale-chromatic.js"></script>
+    <script src="js/smooth-scroll.js"></script>
+
 
     <!--Visualization objects-->
     <script src="js/restaurantMap.js"></script>
     <script src="js/treemap.js"></script>
-    <script src="js/map.js"></script>
+    <!--<script src="js/map.js"></script>-->
     <script src="js/main.js"></script>
+
 
 </body>
 </html>

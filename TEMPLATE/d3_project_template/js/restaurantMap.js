@@ -11,6 +11,7 @@ RestaurantMap = function(_parentElement, _data, _mapPosition) {
     this.parentElement = _parentElement;
     this.data = _data;
     this.mapPosition = _mapPosition;
+    // $("#ex2").slider({});
 
     this.initVis();
 };
@@ -23,13 +24,16 @@ RestaurantMap.prototype.initVis = function() {
 
     var vis = this;
 
-    map = L.map(vis.parentElement).setView([vis.mapPosition[0], vis.mapPosition[1]], 13);
+    map = L.map(vis.parentElement, {
+        minZoom: 5,
+        maxZoom: 10
+    }).setView([vis.mapPosition[0], vis.mapPosition[1]], 13);
 
     L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: 'abcd',
         minZoom: 0,
-        maxZoom: 20,
+        maxZoom: 10,
         ext: 'png'
     }).addTo(map);
 
@@ -66,30 +70,48 @@ RestaurantMap.prototype.updateVis = function() {
     var RestaurantIcon = L.Icon.extend({
         options: {
             shadowUrl: 'images/marker-shadow.png',
-            iconSize: [25,41],
-            iconAnchor: [12,41],
-            popupAnchor: [0,-28]
+            iconSize: [25,30],
+            iconAnchor: [12,30],
+            popupAnchor: [0,-28],
+            shadowAnchor: [12, 40],
         }
     });
 
     var topMarker = new RestaurantIcon({ iconUrl: 'images/marker-green.png'});
-
     var regMarker = new RestaurantIcon({ iconUrl: 'images/markers-coral.png'});
+
+    var marker1 = new RestaurantIcon({ iconUrl: 'images/marker-1.png'});
+    var marker2 = new RestaurantIcon({ iconUrl: 'images/marker-2.png'});
+    var marker3 = new RestaurantIcon({ iconUrl: 'images/marker-3.png'});
+    var marker4 = new RestaurantIcon({ iconUrl: 'images/marker-4.png'});
+    var marker5 = new RestaurantIcon({ iconUrl: 'images/marker-5.png'});
+
 
     vis.displayData.forEach(function(d) {
         var popupContent = "<strong>" + d.name + "</strong> <br>";
         popupContent += d.address;
 
-        var rest;
+        var rest, tempMarker;
 
         if (d.stars >= 4.0) {
-            rest = L.marker([d.latitude, d.longitude], {icon: topMarker}).bindPopup(popupContent);
-            vis.restaurants.addLayer(rest);
+            tempMarker = marker5;
+        }
+        else if (d.stars >= 3.0) {
+            tempMarker = marker4;
+        }
+        else if (d.stars >= 2.0) {
+            tempMarker = marker3;
+        }
+        else if (d.stars >= 1.0) {
+            tempMarker = marker2;
         }
         else {
-            rest = L.marker([d.latitude, d.longitude], {icon: regMarker}).bindPopup(popupContent);
-            vis.restaurants.addLayer(rest);
+            tempMarker = marker1;
         }
+
+        // tempMarker.setOpacity(0.5);
+        rest = L.marker([d.latitude, d.longitude], {icon: tempMarker}).bindPopup(popupContent);
+        vis.restaurants.addLayer(rest);
 
         // prep for clicking
         rest.name = d.name;

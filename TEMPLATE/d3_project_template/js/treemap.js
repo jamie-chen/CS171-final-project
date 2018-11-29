@@ -44,12 +44,15 @@ TreeMap.prototype.initVis = function() {
 
     console.log(vis.treeMapData);
 
+
     // Define TreeMap size
     var width = $("#treemaps").width(),
         height = 300,
         x = d3.scale.linear().range([0, width]),
         y = d3.scale.linear().range([0, height]),
-        color = d3.scale.category20c(),
+        color = d3.scale.ordinal()
+            .domain([0, 100])
+            .range(d3.schemeReds[9]),
         root,
         node;
     d3.select("svg").remove();
@@ -104,7 +107,7 @@ TreeMap.prototype.initVis = function() {
         .style("opacity", function(d) { d.w = this.getComputedTextLength(); return d.dx > d.w ? 1 : 0; });
 
     console.log("Should remove");
-
+    console.log(color);
 }
 
 /*
