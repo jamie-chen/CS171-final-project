@@ -1,5 +1,8 @@
 var map;
 
+var restaurant_imgs = [ "fast_food.jpeg", "american_food.jpeg", "italian.jpeg", "breakfast.jpeg",
+    "mexican.jpeg", "chinese.jpeg", "japanese.jpeg", "american_new.jpeg", "diner.jpeg", "burgers.png"];
+
 /*
  * RestaurantMap - Object constructor function
  * @param _parentElement -- HTML element in which to draw the visualization
@@ -60,13 +63,13 @@ RestaurantMap.prototype.wrangleData = function() {
  */
 RestaurantMap.prototype.updateVis = function() {
 
-    function checkprice(n) {
-        var result = '';
-        for (var i = 0; i < n; i ++) {
-            result += "$";
-        }
-        return result;
-    }
+    // function checkprice(n) {
+    //     var result = '';
+    //     for (var i = 0; i < n; i ++) {
+    //         result += "$";
+    //     }
+    //     return result;
+    // }
 
     var vis = this;
 
@@ -155,17 +158,17 @@ RestaurantMap.prototype.updateVis = function() {
         d3.select("div.star-rating").selectAll("*").remove();
         d3.select("div.price-label").selectAll("*").remove();
 
-        function checkstars(n) {
-            console.log(n);
-            var result = '';
-            for (var i = 1; i <= n; i++) {
-                result += "<span class='fas fa-star'></span>";
-            }
-            if (!(Number.isInteger(n))) {
-                result += "<span class='fas fa-star-half'></span>";
-            }
-            return result;
-        }
+        // function checkstars(n) {
+        //     console.log(n);
+        //     var result = '';
+        //     for (var i = 1; i <= n; i++) {
+        //         result += "<span class='fas fa-star'></span>";
+        //     }
+        //     if (!(Number.isInteger(n))) {
+        //         result += "<span class='fas fa-star-half'></span>";
+        //     }
+        //     return result;
+        // }
 
         var stars = checkstars(clickedMarker.stars);
 
@@ -178,13 +181,13 @@ RestaurantMap.prototype.updateVis = function() {
             .html(stars)
             .attr("class", "star-rating");
 
-        var checkdollars = function(n){
-            var result = '';
-            for (var i = 0; i < n; i ++ ) {
-                result += "<span class='fas fa-dollar-sign'></span>";
-            }
-            return result;
-        };
+        // var checkdollars = function(n){
+        //     var result = '';
+        //     for (var i = 0; i < n; i ++ ) {
+        //         result += "<span class='fas fa-dollar-sign'></span>";
+        //     }
+        //     return result;
+        // };
 
         var dollars = checkdollars(clickedMarker.attributes.RestaurantsPriceRange2);
         var pricelabel = d3.select("div.price-label").append("g")
@@ -196,8 +199,6 @@ RestaurantMap.prototype.updateVis = function() {
         var categories = ["Rating: ", "Price", "Number of Reviews: ", "Neighborhood: ", "Address: ", "Categories: "];
         var data = [clickedMarker.stars + "/5", price, clickedMarker.review_count, clickedMarker.neighborhood, clickedMarker.address + ", " + clickedMarker.city + " " + clickedMarker.state,
             clickedMarker.categories];
-        console.log("TESTING FOR NULL");
-        console.log(clickedMarker.neighborhood);
 
         var final_data = [];
         categories.forEach(function(d, index) {
@@ -226,21 +227,8 @@ RestaurantMap.prototype.updateVis = function() {
         //
         // console.log(clickedMarker);
 
-        var restaurant_imgs = [ "fast_food.jpeg", "american_food.jpeg", "italian.jpeg", "breakfast.jpeg",
-            "mexican.jpeg", "chinese.jpeg", "japanese.jpeg", "american_new.jpeg", "diner.jpeg", "burgers.png"];
-        function find_image(lst) {
-            console.log(lst);
-            var result ='';
-            restaurant_categories.forEach(function(type, index) {
-                if (lst.includes(type)) {
-                    result = restaurant_imgs[index];
-                }
-            });
-            if (result =='') {
-                result = "restaurant.jpeg";
-            }
-            return result;
-        };
+        // var restaurant_imgs = [ "fast_food.jpeg", "american_food.jpeg", "italian.jpeg", "breakfast.jpeg",
+        //     "mexican.jpeg", "chinese.jpeg", "japanese.jpeg", "american_new.jpeg", "diner.jpeg", "burgers.png"];
 
         var imgsource = find_image(clickedMarker.categories);
         if (imgsource != '') {

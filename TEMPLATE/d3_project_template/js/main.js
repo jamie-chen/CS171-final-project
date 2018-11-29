@@ -33,13 +33,20 @@ d3.json("data/LV_data.json", function(error, restaurantData) {
 
     data = restaurantData;
 
+    var recommended_rest = '';
+    generateRec(recommended_rest);
+
     // To generate our own suggested restaurant
     d3.select("#generatorRestaurant").on("click", function() {
-        createWebsiteGenRestaurant();
+        recommended_rest = createWebsiteGenRestaurant();
+        generateRec(recommended_rest);
     });
 
     testMap = new RestaurantMap("test-map", data, [36.1699, -115.13398]);
     treeMap = new TreeMap("#tree-map-div", data);
+
+
+    // restaurantRec = new GenRecommendation("#restaurant-recommendation", data);
 
 
     d3.select("#ratingFilter").on("click", function() {
@@ -51,6 +58,121 @@ d3.json("data/LV_data.json", function(error, restaurantData) {
     //     updateVisualization();
     // })
 });
+
+function generateRec(rest_name) {
+
+    // if not selected, then default. otherwise update with generated name
+
+    var rec_restaurant = find_rest(rest_name);
+    console.log(rec_restaurant);
+    console.log(data);
+
+    // title
+    d3.select("div.title").selectAll("*").remove();
+    d3.select("div.rest-name").selectAll("*").remove();
+
+    var title = d3.select("div.title").selectAll("h2")
+        .data(rec_restaurant)
+        .enter()
+        .append("h2")
+        .text(function(d) {
+            console.log("TEST");
+            if (d.name == "Teriyaki Brother") {
+                return "Trending Now";
+            }
+            else return "Based on your search, we recommend: "
+        })
+        .attr("class", "title");
+
+    var rest_name = d3.select("div.rest-name").selectAll("h1")
+        .data(rec_restaurant)
+        .enter()
+        .append("h1")
+        .text(function(d) {return d.name})
+        .attr("class", "rest-name");
+
+    var imgsource = find_image(rec_restaurant[0].categories);
+    if (imgsource != '') {
+        var path = ["images/" + imgsource];
+        console.log(path);
+    };
+
+    var img_width = $("#default-img").width();
+
+    d3.select("div.rec-image").selectAll("*").remove();
+    var img_svg = d3.select("div.rec-image").append("svg")
+        .attr("width", img_width)
+        .attr("height", 300);
+
+    img_svg.selectAll("image")
+        .data(path)
+        .enter()
+        .append("image")
+        .attr("xlink:href", path)
+        .attr("x", "0")
+        .attr("y", "0")
+        .attr("width", img_width)
+        .attr("height", 300)
+        .attr("class", "rec-image");
+
+    var stars = checkstars(rec_restaurant[0].stars);
+    var dollars = checkdollars(rec_restaurant[0].attributes.RestaurantsPriceRange2);
+    console.log(rec_restaurant[0].attributes.RestaurantsPriceRange2);
+    var price = checkprice(rec_restaurant[0].attributes.RestaurantsPriceRange2);
+
+    d3.select("div.price-label1").selectAll("*").remove();
+    d3.select("div.star-rating1").selectAll("*").remove();
+
+    var pricelabel = d3.select("div.price-label1").append("g")
+        .html(dollars)
+        .attr("class", "price-label1");
+
+    var starlabel = d3.select("div.star-label1").append("g")
+        .html(stars)
+        .attr("class", "star-rating1");
+
+    var categories = ["Rating: ", "Price", "Number of Reviews: ", "Neighborhood: ", "Address: ", "Categories: "];
+    var rest_data = [rec_restaurant[0].stars + "/5", price, rec_restaurant[0].review_count, rec_restaurant[0].neighborhood, rec_restaurant[0].address + ", " + rec_restaurant[0].city + " " + rec_restaurant[0].state,
+        rec_restaurant[0].categories];
+
+    d3.select("div.col.restaurant-cat1").selectAll("*").remove();
+    d3.select("div.col.restaurant-cat1").selectAll("p")
+        .data(categories)
+        .enter()
+        .append("p")
+        .attr("class", "restaurant-cat1")
+        .text(function(d) {return d});
+
+    d3.select("div.col.restaurant-data1").selectAll("*").remove();
+    d3.select("div.col.restaurant-data1").selectAll("p")
+        .data(rest_data)
+        .enter()
+        .append("p")
+        .text(function(d) {
+            if (d == '') {
+                return "Information unavailable";
+            }
+            else return d});
+
+
+    function find_rest(rest_name) {
+        var result = {};
+        if (rest_name == '') {
+            result = data.filter(function(e) {
+                return e.name == "Teriyaki Brother";
+            })
+        }
+        else result = data.filter(function(e) {
+            return e.name == rest_name;
+        });
+        if (result.length > 1) {
+            result = [result[0]];
+        }
+        return result;
+    }
+
+
+}
 
 function createWebsiteGenRestaurant() {
     var category = document.getElementById('restCategory').value;
@@ -74,9 +196,11 @@ function createWebsiteGenRestaurant() {
 
     if (starFit.length == 0) {
         d3.select('#restaurant-rec').text("Sorry we don't have a restaurant that fits your criteria!");
+        return '';
     }
     else {
         d3.select('#restaurant-rec').text("Try out this restaurant: " + starFit[0].name);
+        return starFit[0].name;
     }
 }
 
@@ -144,3 +268,47 @@ function resetTreeMap() {
         .text("Selected Category: All Categories");
 
 }
+
+
+function checkprice(n) {
+    var result = '';
+    for (var i = 0; i < n; i ++) {
+        result += "$";
+    }
+    return result;
+}
+
+var checkdollars = function(n){
+    var result = '';
+    for (var i = 0; i < n; i ++ ) {
+        result += "<span class='fas fa-dollar-sign'></span>";
+    }
+    return result;
+};
+
+function checkstars(n) {
+    console.log(n);
+    var result = '';
+    for (var i = 1; i <= n; i++) {
+        result += "<span class='fas fa-star'></span>";
+    }
+    if (!(Number.isInteger(n))) {
+        result += "<span class='fas fa-star-half'></span>";
+    }
+    return result;
+}
+
+function find_image(lst) {
+    console.log(lst);
+    var result ='';
+    restaurant_categories.forEach(function(type, index) {
+        if (lst.includes(type)) {
+            result = restaurant_imgs[index];
+        }
+    });
+    if (result =='') {
+        result = "restaurant.jpeg";
+    }
+    return result;
+};
+

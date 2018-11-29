@@ -16,7 +16,7 @@ h1 {
 }
 
 h2 {
-text-align: left;
+	text-align: left;
 }
 
 #homepage-title {
@@ -114,6 +114,10 @@ a:hover {
 .restaurant-title h1 {
     text-align: center;
     color: white;
+}
+
+.rest-name h1 {
+	color:white;
 }
 
 span {
