@@ -113,8 +113,11 @@ a:hover {
 
 .restaurant-title h1 {
     text-align: center;
-    align-content: center;
     color: white;
+}
+
+span {
+	font-size: 30px;
 }
 
 .restaurant-cat p {

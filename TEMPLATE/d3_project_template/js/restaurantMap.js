@@ -1,4 +1,5 @@
 var map;
+
 /*
  * RestaurantMap - Object constructor function
  * @param _parentElement -- HTML element in which to draw the visualization
@@ -58,6 +59,15 @@ RestaurantMap.prototype.wrangleData = function() {
  * Drawing function
  */
 RestaurantMap.prototype.updateVis = function() {
+
+    function checkprice(n) {
+        var result = '';
+        for (var i = 0; i < n; i ++) {
+            result += "$";
+        }
+        return result;
+    }
+
     var vis = this;
 
     if (vis.restaurants != null)
@@ -88,7 +98,16 @@ RestaurantMap.prototype.updateVis = function() {
 
 
     vis.displayData.forEach(function(d) {
-        var popupContent = "<strong>" + d.name + "</strong> <br>";
+        console.log(d);
+        function filter_price(attr) {
+            if (attr == null) {
+                return '';
+            }
+            else return checkprice(attr.RestaurantsPriceRange2);
+        };
+
+
+        var popupContent = "<strong>" + d.name + "<br>" + filter_price(d.attributes) + "</strong><br>";
         popupContent += d.address;
 
         var rest, tempMarker;
@@ -171,15 +190,6 @@ RestaurantMap.prototype.updateVis = function() {
         var pricelabel = d3.select("div.price-label").append("g")
             .html(dollars)
             .attr("class", "price-label");
-
-
-        function checkprice(n) {
-            var result = '';
-            for (var i = 0; i < n; i ++) {
-                result += "$";
-            }
-            return result;
-        }
 
         var price = checkprice(clickedMarker.attributes.RestaurantsPriceRange2);
 
