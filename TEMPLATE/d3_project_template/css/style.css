@@ -133,7 +133,14 @@ span {
     text-align: left;
 }
 
+.reviews {
+	font-style: italic;
+}
 
+.filler p {
+	font-size: 20px;
+	font-weight: bold;
+}
 
 /*/
 

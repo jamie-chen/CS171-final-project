@@ -29,17 +29,15 @@ d3.json("data/LV_data.json", function(error, restaurantData) {
     restaurantData = restaurantData.filter(function(d) {
         console.log(d);
         return d.hasOwnProperty("categories");
-    })
+    });
 
     data = restaurantData;
 
     var recommended_rest = '';
-    generateRec(recommended_rest);
 
     // To generate our own suggested restaurant
     d3.select("#generatorRestaurant").on("click", function() {
         recommended_rest = createWebsiteGenRestaurant();
-        generateRec(recommended_rest);
     });
 
     testMap = new RestaurantMap("test-map", data, [36.1699, -115.13398]);
@@ -62,7 +60,7 @@ d3.json("data/LV_data.json", function(error, restaurantData) {
 function generateRec(rest_name) {
 
     // if not selected, then default. otherwise update with generated name
-
+    d3.select(".reviews").selectAll("*").remove();
     var rec_restaurant = find_rest(rest_name);
     console.log(rec_restaurant);
     console.log(data);
@@ -70,6 +68,9 @@ function generateRec(rest_name) {
     // title
     d3.select("div.title").selectAll("*").remove();
     d3.select("div.rest-name").selectAll("*").remove();
+    d3.select("div.price-label1").selectAll("*").remove();
+    d3.select(".star-label1").selectAll("*").remove();
+    d3.select("div.rec-image").selectAll("*").remove();
 
     var title = d3.select("div.title").selectAll("h2")
         .data(rec_restaurant)
@@ -99,7 +100,6 @@ function generateRec(rest_name) {
 
     var img_width = $("#default-img").width();
 
-    d3.select("div.rec-image").selectAll("*").remove();
     var img_svg = d3.select("div.rec-image").append("svg")
         .attr("width", img_width)
         .attr("height", 300);
@@ -120,8 +120,6 @@ function generateRec(rest_name) {
     console.log(rec_restaurant[0].attributes.RestaurantsPriceRange2);
     var price = checkprice(rec_restaurant[0].attributes.RestaurantsPriceRange2);
 
-    d3.select("div.price-label1").selectAll("*").remove();
-    d3.select("div.star-rating1").selectAll("*").remove();
 
     var pricelabel = d3.select("div.price-label1").append("g")
         .html(dollars)
@@ -200,6 +198,7 @@ function createWebsiteGenRestaurant() {
     }
     else {
         d3.select('#restaurant-rec').text("Try out this restaurant: " + starFit[0].name);
+        generateRec(starFit[0].name);
         return starFit[0].name;
     }
 }
