@@ -56,7 +56,7 @@ TreeMap.prototype.initVis = function() {
             .range(d3.schemeReds[9]),
         root,
         node;
-    d3.select("svg").remove();
+    // d3.select("svg").remove();
 
     vis.treemap = d3.layout.treemap()
         .round(true)
