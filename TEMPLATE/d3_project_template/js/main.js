@@ -70,7 +70,6 @@ function generateRec(rest_name) {
     d3.select("div.rest-name").selectAll("*").remove();
     d3.select("div.price-label1").selectAll("*").remove();
     d3.select(".star-label1").selectAll("*").remove();
-    d3.select("div.rec-image").selectAll("*").remove();
 
     var title = d3.select("div.title").selectAll("h2")
         .data(rec_restaurant)
@@ -92,28 +91,45 @@ function generateRec(rest_name) {
         .text(function(d) {return d.name})
         .attr("class", "rest-name");
 
-    var imgsource = find_image(rec_restaurant[0].categories);
-    if (imgsource != '') {
-        var path = ["images/" + imgsource];
-        console.log(path);
-    };
+    var imgsource = find_image2(rec_restaurant[0].categories);
 
     var img_width = $("#default-img").width();
 
-    var img_svg = d3.select("div.rec-image").append("svg")
-        .attr("width", img_width)
-        .attr("height", 300);
+    for (var i = 0; i < 4; i ++ ) {
+        console.log(imgsource);
+        var path = ["images/" + imgsource[i]];
+        var selector = "#rec-image-" + (i + 1);
+        d3.select(selector).selectAll("*").remove();
+        var img_svg = d3.select(selector).append("svg")
+            .attr("width", 300)
+            .attr("height", 300);
 
-    img_svg.selectAll("image")
-        .data(path)
-        .enter()
-        .append("image")
-        .attr("xlink:href", path)
-        .attr("x", "0")
-        .attr("y", "0")
-        .attr("width", img_width)
-        .attr("height", 300)
-        .attr("class", "rec-image");
+        img_svg.selectAll("image")
+            .data(path)
+            .enter()
+            .append("image")
+            .attr("xlink:href", path)
+            .attr("x", "0")
+            .attr("y", "0")
+            .attr("width", 300)
+            .attr("height", 300)
+            .attr("class", "rec-image");
+
+    };
+    // var img_svg = d3.select("div.rec-image").append("svg")
+    //     .attr("width", img_width)
+    //     .attr("height", 300);
+    //
+    // img_svg.selectAll("image")
+    //     .data(path)
+    //     .enter()
+    //     .append("image")
+    //     .attr("xlink:href", path)
+    //     .attr("x", "0")
+    //     .attr("y", "0")
+    //     .attr("width", img_width)
+    //     .attr("height", 300)
+    //     .attr("class", "rec-image");
 
     var stars = checkstars(rec_restaurant[0].stars);
     var dollars = checkdollars(rec_restaurant[0].attributes.RestaurantsPriceRange2);
@@ -310,4 +326,19 @@ function find_image(lst) {
     }
     return result;
 };
+
+function find_image2(lst) {
+    console.log(lst);
+    var result ='';
+    restaurant_categories.forEach(function(type, index) {
+        if (lst.includes(type)) {
+            result = restaurant_imgs_expanded[type];
+        }
+    });
+    if (result =='') {
+        result = restaurant_imgs_expanded["Restaurant"];
+    }
+    return result;
+};
+
 
