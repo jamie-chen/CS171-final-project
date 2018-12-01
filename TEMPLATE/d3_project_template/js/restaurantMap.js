@@ -7,7 +7,7 @@ var restaurant_imgs_expanded = {
     "Fast Food": ["fast_food.jpeg", 'fast_food1.jpeg', "fast_food2.jpeg", "fast_food3.jpeg"],
     "American (Traditional)": ["american_food.jpeg", "american1.jpeg", "american2.jpeg", "american3.jpeg"],
     "Italian": ["italian.jpeg", "italian1.jpeg", "italian2.jpeg", "italian3.jpeg"] ,
-    "Breakfast & Brunch": ["breakfast1.jpeg", "breakfast.jpeg", "waffles_default.jpeg", "breakfast2.jpeg"] ,
+    "Breakfast & Brunch": ["breakfast1.jpeg", "breakfast.jpeg", "waffles_default.jpeg", "breakfast4.jpeg"] ,
     "Mexican": ["mexican.jpeg", "mexican1.jpeg", "mexican2.jpeg", "mexican3.jpeg"],
     "Chinese" : ["chinese.jpeg", "chinese_default1.jpeg", "chinese_default2.jpeg", "chinese_default6.jpeg"],
     "Japanese": ["japanese.jpeg", "japanese1.jpeg", "japanese2.jpeg", "japanese3.jpeg"],

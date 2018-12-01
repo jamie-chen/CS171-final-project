@@ -101,7 +101,7 @@ function generateRec(rest_name) {
         var selector = "#rec-image-" + (i + 1);
         d3.select(selector).selectAll("*").remove();
         var img_svg = d3.select(selector).append("svg")
-            .attr("width", 300)
+            .attr("width", img_width)
             .attr("height", 300);
 
         img_svg.selectAll("image")
@@ -111,7 +111,7 @@ function generateRec(rest_name) {
             .attr("xlink:href", path)
             .attr("x", "0")
             .attr("y", "0")
-            .attr("width", 300)
+            .attr("width", img_width)
             .attr("height", 300)
             .attr("class", "rec-image");
 
