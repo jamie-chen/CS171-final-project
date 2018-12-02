@@ -1,17 +1,17 @@
 var map;
 
-var restaurant_imgs = [ "fast_food.jpeg", "american_food.jpeg", "italian.jpeg", "breakfast.jpeg",
+var restaurant_imgs = [ "fast_food.jpeg", "american4.jpeg", "italian.jpeg", "breakfast.jpeg",
     "mexican.jpeg", "chinese.jpeg", "japanese.jpeg", "american_new.jpeg", "diner3.jpeg", "burgers.png"];
 
 var restaurant_imgs_expanded = {
     "Fast Food": ["fast_food.jpeg", 'fast_food1.jpeg', "fast_food2.jpeg", "fastfood4.jpeg"],
-    "American (Traditional)": ["american_food.jpeg", "american1.jpeg", "american2.jpeg", "american3.jpeg"],
+    "American (Traditional)": ["american4.jpeg", "american1.jpeg", "american2.jpeg", "american3.jpeg"],
     "Italian": ["italian.jpeg", "italian1.jpeg", "italian2.jpeg", "italian3.jpeg"] ,
     "Breakfast & Brunch": ["breakfast1.jpeg", "breakfast3.jpeg", "waffles_default.jpeg", "breakfast4.jpeg"] ,
     "Mexican": ["mexican.jpeg", "mexican1.jpeg", "mexican2.jpeg", "mexican3.jpeg"],
     "Chinese" : ["chinese.jpeg", "chinese_default1.jpeg", "chinese_default2.jpeg", "chinese_default6.jpeg"],
     "Japanese": ["japanese.jpeg", "japanese1.jpeg", "japanese2.jpeg", "sushi4.jpeg"],
-    "American (New)": ["american_food.jpeg", "american1.jpeg", "american2.jpeg", "american3.jpeg"],
+    "American (New)": ["american4.jpeg", "american1.jpeg", "american2.jpeg", "american3.jpeg"],
     "Diners": ["diner.jpeg", "diner1.jpeg", "diner3.jpeg", "diner4.jpeg"],
     "Burgers": ["burgers.png", 'fast_food1.jpeg', "fast_food2.jpeg", "burgers2.jpeg"],
     "Restaurant": ["restaurant.jpeg", "american1.jpeg", "american2.jpeg", "american3.jpeg"],
