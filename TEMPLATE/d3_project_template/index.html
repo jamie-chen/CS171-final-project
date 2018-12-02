@@ -202,11 +202,9 @@
                     <option value="5.0"> 5.0 </option>
                 </select>
             </div>
-
             <div class="col">
                 <button type="button" class="btn btn-danger" id="generatorRestaurant"> Find me a restaurant </button>
             </div>
-
         </div>
         <h3 id="restaurant-rec"></h3>
 
@@ -223,8 +221,8 @@
                 <div class="row" id="inputs">
                     <h2>Food Map of Las Vegas</h2>
                     <p>
-                        The green icons indicate restaurants with a rating of 4.0 stars or more. Click on the individual icons
-                        to see the name of the restaurant and its address.
+                        Want to see more options near you? Explore the map below -- filter for your desired price and star rating. The color of the icons corresponds to the star rating. Click on the individual icons
+                        to see more information about the restaurant!
                     </p>
                     <div class="input-group" id="ratingframe">
                         <select class="custom-select custom-select-sml" id="low">
@@ -311,6 +309,13 @@
             </div>
         </div>
 
+        <br>
+        <div class = "row" id = "tree-map intro">
+            <h2>Refine your search <i class="fas fa-search-plus"></i></h2>
+            <p>Click on the different cuisine types to explore more options near you. Selecting a certain cuisine will filter
+            the map above and show only options that match the cuisine you're looking for, as well as show the number of restaurants
+                of that cuisine in the area. </p>
+        </div>
         <div class="row" id="treemap-details">
             <div class="col-6">
                 <h2 id="selected-cat">Selected Category: All Categories</h2>
