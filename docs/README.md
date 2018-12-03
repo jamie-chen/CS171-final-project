@@ -17,7 +17,7 @@ LV_data.json contains data that we filtered from the original Yelp business.json
 around the world. Our dataset contains only restaurants from Las Vegas.
 
 Link to final project: https://jamie-chen.github.io/CS171-final-project/
-
+Link to video presentation: https://youtu.be/DMJDaoO1g20
 
 Our files:
 
