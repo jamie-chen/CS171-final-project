@@ -1,5 +1,7 @@
 # CS171-final-project
-CS171 Final Project - YELP 
+CS171 Final Project - A Hungry Student's Guide to Cambridge
+
+Jamie Chen, Jake Cui, and Annie Kim
 
 Our final project is a website that we made using data from the Yelp dataset available here: https://www.yelp.com/dataset/documentation/main.
 We have implemented a recommender tool using svgs, a map based on Leaflet, and a treemap. The recommendation is generated
@@ -14,22 +16,32 @@ in the treemap will filter the restaurants shown on the map such that only resta
 LV_data.json contains data that we filtered from the original Yelp business.json file (filtered with the file clean_data.py), which contains data on various restaurants
 around the world. Our dataset contains only restaurants from Las Vegas.
 
-Our files
+Our files:
+
 /css
+
     /style.css
+
 /images
+
 /js
+
     /main.js
     /treemap.js
     /restaurantMap.js
+
 index.html
 
 Library files:
+
 /css
+
     /bootstrap.min.css
     /leaflet.awesome-markers.css
     /leaflet.css
+
 /js
+
     /bootstrap.min.js
     /d3.min.js
     /d3-color.js
