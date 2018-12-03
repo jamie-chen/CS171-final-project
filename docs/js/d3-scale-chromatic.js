@@ -1,7 +1,7 @@
 // https://d3js.org/d3-scale-chromatic/ v1.3.3 Copyright 2018 Mike Bostock
 (function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-interpolate'), require('d3-color')) :
-typeof define === 'function' && define.amd ? define(['exports', 'd3-interpolate', 'd3-color'], factory) :
+typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('docs/js/d3-interpolate'), require('docs/js/d3-color')) :
+typeof define === 'function' && define.amd ? define(['exports', 'docs/js/d3-interpolate', 'd3-color'], factory) :
 (factory((global.d3 = global.d3 || {}),global.d3,global.d3));
 }(this, (function (exports,d3Interpolate,d3Color) { 'use strict';
 
