@@ -16,6 +16,9 @@ in the treemap will filter the restaurants shown on the map such that only resta
 LV_data.json contains data that we filtered from the original Yelp business.json file (filtered with the file clean_data.py), which contains data on various restaurants
 around the world. Our dataset contains only restaurants from Las Vegas.
 
+Link to final project: https://jamie-chen.github.io/CS171-final-project/
+
+
 Our files:
 
 /css
