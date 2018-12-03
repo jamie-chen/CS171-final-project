@@ -23,7 +23,7 @@ h2 {
 	font-size: 20px;
 }
 #homepage-title {
-	margin-top: 15%;
+	margin-top: 20%;
 	font-size: 55px;
 	color: white;
 }
@@ -41,11 +41,39 @@ h2 {
 }
 
 #space-holder {
-	height: 45vh;
+	height: 0vh;
 }
 
 a:hover {
 	color:white;
+}
+
+/*Arrow*/
+
+a { color: white; text-decoration: none; }
+
+.arrow {
+	text-align: center;
+	margin: 2% 0;
+	margin-top: 30vh;
+	pointer-events: none;
+}
+.bounce {
+	-moz-animation: bounce 2s infinite;
+	-webkit-animation: bounce 2s infinite;
+	animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-30px);
+	}
+	60% {
+		transform: translateY(-15px);
+	}
 }
 
 .nav-link {

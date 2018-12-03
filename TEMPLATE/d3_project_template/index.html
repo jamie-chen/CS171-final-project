@@ -33,7 +33,10 @@
         </div>
     </header>
 </div>
-
+<!--Arrow found at https://codepad.co/snippet/AYXI3hjg-->
+<div class="arrow bounce">
+    <a class="fas fa-angle-down fa-2x" href="#"></a>
+</div>
 <div id="space-holder"></div>
 
 <div id="summary">
@@ -158,6 +161,8 @@
             </div>
         </div>
 
+
+
         <div class="divide-space"></div>
         <br>
         <br>
@@ -168,7 +173,7 @@
         <br>
 
         <div class="row" id="tryUs">
-            <div class="col">
+            <div class="col-4">
                 <select class="custom-select custom-select-sml" id="restCategory" >
                     <option selected> Select the category of the restaurant </option>
                     <option value="Fast Food">Fast Food</option>
@@ -182,7 +187,7 @@
                 </select>
             </div>
 
-            <div class="col">
+            <div class="col-4">
                 <select class="custom-select custom-select-sml" id="priceCategory">
                     <option selected> Select the price range of the restaurant </option>
                     <option value="1"> $ </option>
@@ -192,7 +197,7 @@
                 </select>
             </div>
 
-            <div class="col">
+            <div class="col-4">
                 <select class="custom-select custom-select-sml" id="minRating">
                     <option selected> Select the minimum rating of the restaurant </option>
                     <option value="1.0"> 1.0 </option>
@@ -202,11 +207,12 @@
                     <option value="5.0"> 5.0 </option>
                 </select>
             </div>
-            <div class="col">
-                <button type="button" class="btn btn-danger" id="generatorRestaurant"> Find me a restaurant </button>
-            </div>
+
         </div>
-        <h3 id="restaurant-rec"></h3>
+        <div class="col">
+            <button type="button" class="btn btn-danger" id="generatorRestaurant"> Find me a restaurant </button>
+        </div>
+        <h3 id="restaurant-rec">Select options from the dropdowns above for a recommendation.</h3>
 
 
         <div class="row" >
