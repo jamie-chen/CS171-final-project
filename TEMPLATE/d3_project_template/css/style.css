@@ -19,6 +19,11 @@ h2 {
 	text-align: left;
 }
 
+image {
+	text-align: center;
+	content-align: center;
+}
+
 #selected-cat {
 	font-size: 20px;
 }
